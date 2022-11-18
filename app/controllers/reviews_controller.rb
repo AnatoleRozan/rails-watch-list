@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
     @list = List.find(params[:list_id])
     @review.list = @list
     if @review.save
-      redirect_to list_path(@list)
+      redirect_to root_path(@list)
     else
       @bookmark = Bookmark.new
       render 'lists/show', status: :unprocessable_entity
@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to list_path(@review.list)
+    redirect_to root_path(@review.list)
   end
 
   private
